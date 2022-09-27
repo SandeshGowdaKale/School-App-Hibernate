@@ -11,13 +11,14 @@ import javax.persistence.Table;
 @Entity
 public class User {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	@Column(nullable = false)
 	private String name;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private long phone;
 
 	@Column(nullable = false)
@@ -26,7 +27,7 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String email;
 	private String gender;
 
@@ -84,6 +85,12 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", password="
+				+ password + ", email=" + email + ", gender=" + gender + "]";
 	}
 
 }
